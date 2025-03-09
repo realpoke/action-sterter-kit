@@ -1,8 +1,8 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/livewire-starter-kit",
+    "name": "realpoke/action-starter-kit",
     "type": "project",
-    "description": "The official Laravel starter kit for Livewire.",
+    "description": "An un-official Laravel starter kit for Livewire using actions.",
     "keywords": [
         "laravel",
         "framework"
@@ -10,19 +10,29 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "bacon/bacon-qr-code": "^3.0",
         "laravel/framework": "^12.0",
+        "laravel/octane": "^2.8",
+        "laravel/reverb": "^1.4",
         "laravel/tinker": "^2.10.1",
         "livewire/flux": "^2.0",
-        "livewire/volt": "^1.6.7"
+        "livewire/flux-pro": "^2.0",
+        "pragmarx/google2fa": "^8.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.15",
         "fakerphp/faker": "^1.23",
-        "laravel/pail": "^1.2.2",
+        "larastan/larastan": "^3.1",
         "laravel/pint": "^1.18",
-        "laravel/sail": "^1.41",
+        "larswiegers/laravel-translations-checker": "^0.9.3",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.6",
-        "phpunit/phpunit": "^11.5.3"
+        "peckphp/peck": "^0.1.2",
+        "pestphp/pest": "^3.7",
+        "pestphp/pest-plugin-type-coverage": "^3.3",
+        "phpstan/phpstan": "^2.1",
+        "rector/rector": "^2.0",
+        "soloterm/solo": "^0.4.0"
     },
     "autoload": {
         "psr-4": {
@@ -52,9 +62,60 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ],
+        "open-link": "export $(cat .env | grep APP_URL) && if [ $(uname) = 'Darwin' ]; then open $APP_URL; elif [ $(uname) = 'Linux' ]; then xdg-open $APP_URL; elif [ $(uname) = 'MINGW32_NT' ] || [ $(uname) = 'MINGW64_NT' ]; then start $APP_URL; fi",
+        "setup": "@setup:pro",
+        "setup:pro": [
+            "composer install",
+            "php artisan flux:activate",
+            "bun install",
+            "@post-root-package-install",
+            "@post-create-project-cmd",
+            "@php artisan storage:link --ansi",
+            "@open-link",
+            "@dev"
+        ],
+        "setup:free": [
+            "composer install",
+            "bun install",
+            "@post-root-package-install",
+            "@post-create-project-cmd",
+            "@php artisan storage:link --ansi",
+            "@open-link",
+            "@dev"
+        ],
         "dev": [
             "Composer\\Config::disableProcessTimeout",
-            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+            "@php artisan solo"
+        ],
+        "lint": "pint",
+        "refactor": "rector",
+        "fix": [
+            "@refactor",
+            "@lint"
+        ],
+        "fix:test": [
+            "@fix",
+            "@test:unit",
+            "@test:typos",
+            "@test:types",
+            "@test:type-coverage"
+        ],
+        "test:lint": "pint --test",
+        "test:refactor": "rector --dry-run",
+        "test:translations": "@php artisan translations:check",
+        "test:unit": "pest --parallel --coverage --exactly=100",
+        "test:typos": "peck",
+        "test:types": "phpstan",
+        "test:type-coverage": "pest --type-coverage --min=100",
+        "test:arch": "pest --filter=arch",
+        "test": [
+            "@test:lint",
+            "@test:refactor",
+            "@test:translations",
+            "@test:unit",
+            "@test:typos",
+            "@test:types",
+            "@test:type-coverage"
         ]
     },
     "extra": {
@@ -72,5 +133,11 @@
         }
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "flux-pro": {
+            "type": "composer",
+            "url": "https://composer.fluxui.dev"
+        }
+    }
 }
