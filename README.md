@@ -3,6 +3,7 @@ An opinionated Laravel FATLL stack website base.
 
 [![deploy](https://github.com/realpoke/action-sterter-kit/actions/workflows/deploy.yaml/badge.svg)](https://github.com/realpoke/action-sterter-kit/actions/workflows/deploy.yaml)
 [![tests](https://github.com/realpoke/action-sterter-kit/actions/workflows/tests.yaml/badge.svg)](https://github.com/realpoke/action-sterter-kit/actions/workflows/tests.yaml)
+<a href="https://herd.laravel.com/new?starter-kit=realpoke/action-stater-kit"><img src="https://img.shields.io/badge/Install%20with%20Herd-f55247?logo=laravel&logoColor=white"></a>
 
 ## Stack
 - **Flux**
@@ -72,6 +73,7 @@ The `composer dev` command starts the essential services required for developmen
 - **HTTP**: Starts the development server with `php artisan serve`.
 - **Queue**: Starts the queue worker with `php artisan queue:work`.
 - **Reverb**: Starts the reverb process with `php artisan reverb:start --debug`.
+
 All these services are executed concurrently with the **Solo** package by running the `composer dev` command, ensuring a streamlined development process without needing to run individual processes manually.
 
 ### Code Quality & Testing
