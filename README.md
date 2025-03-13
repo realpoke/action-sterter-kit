@@ -1,6 +1,8 @@
 # Action Starter Kit
-
 An opinionated Laravel FATLL stack website base.
+
+[![deploy](https://github.com/realpoke/action-sterter-kit/actions/workflows/deploy.yaml/badge.svg)](https://github.com/realpoke/action-sterter-kit/actions/workflows/deploy.yaml)
+[![tests](https://github.com/realpoke/action-sterter-kit/actions/workflows/tests.yaml/badge.svg)](https://github.com/realpoke/action-sterter-kit/actions/workflows/tests.yaml)
 
 ## Stack
 - **Flux**
