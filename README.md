@@ -6,21 +6,34 @@ An opinionated Laravel FATLL stack website base.
 <a href="https://herd.laravel.com/new?starter-kit=realpoke/action-stater-kit"><img src="https://img.shields.io/badge/Install%20with%20Herd-f55247?logo=laravel&logoColor=white"></a>
 
 ## Stack
-- **Flux**
-- **Alpine.js**
-- **TailwindCSS**
-- **Laravel**
-- **Livewire**
+- [FluxUI Pro](https://fluxui.dev/) – Premium UI component library for Livewire.
+- [Alpine.js](https://alpinejs.dev/) – Minimal, reactive JavaScript framework for handling UI interactivity.
+- [TailwindCSS](https://tailwindcss.com/) – Utility-first CSS framework for rapid, customizable design.
+- [Laravel](https://laravel.com/) – Modern PHP framework for building robust websites.
+- [Livewire](https://livewire.laravel.com/) – Full-stack framework for building dynamic interfaces in Laravel.
+
+### Features
+Full Laravel Authentication Flows, Two Factor Authentication, User Avatars, Session Management, Fully Tested, User Profile Page, Composer Script Automation, CI/CD & Auto Deploy, Action/Command Pattern, Mobile-Friendly, Dark Mode Support, Fully Translatable, Auto Language Picker, Fully Responsive Across Browsers.
 
 ## Development Setup
 
-1. Clone the repo using the GitHub template or manually:
-   - **Using GitHub Template**: Click "Use this template" on the [GitHub repo page](https://github.com/realpoke/action-starter-kit) to create a new repository and clone it.
+1. Clone the repo:
+   - **Using GitHub Template**:
+
+     Click "Use this template" on the [GitHub repo page](https://github.com/realpoke/action-starter-kit) to create a new repository and clone it.
    - **Manually**: 
      ```sh
      git clone https://github.com/realpoke/action-starter-kit.git
      cd action-starter-kit
      ```
+   - **Laravel Installer**: 
+     ```sh
+     laravel new --using=realpoke/action-starter-kit
+     cd action-starter-kit
+     ```
+    - **Laravel Herd**:
+   
+      <a href="https://herd.laravel.com/new?starter-kit=realpoke/action-stater-kit"><img src="https://img.shields.io/badge/Install%20with%20Herd-f55247?logo=laravel&logoColor=white"></a>
 
 2. Set up and run the development environment:
    - **Initial Setup**: First time starting the development environment, use the setup script:
@@ -86,6 +99,7 @@ All these services are executed concurrently with the **Solo** package by runnin
 The following scripts help ensure that the code stays clean and error-free:
 - **`composer fix`**: Runs Pint and Rector to fix code quality issues.
 - **`composer test`**: Runs a suite of tests to ensure the application works as expected.
+- **`composer fix:test`**: Runs both the fixup and tests in one script.
 
 Here are some of the custom scripts included in the `composer.json` file:
 
